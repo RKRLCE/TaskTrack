@@ -2,14 +2,39 @@
 
 A web app for students to organize assignments and deadlines. Helps manage multiple subjects by tracking due dates, sending reminders, and preventing late submissions through better time management.
 
+---
+
 ## Overview
-Many students struggle to keep track of multiple assignments and deadlines across different subjects. This often leads to late submissions, missed opportunities for improvement, and unnecessary stress. Assignment & Deadline Manager was built to address these challenges by providing a clear and simple way to organize tasks and manage time effectively.
+Many students struggle with keeping track of multiple assignments and deadlines across different subjects. This often leads to:
+- **Late submissions** due to poor tracking.
+- **Missed opportunities** to improve grades because tasks are forgotten.
+- **Increased stress** caused by disorganization.
 
-## What It Does
-The app allows students to:
-- Add assignments with subject names, descriptions, and due dates.
-- Automatically sort tasks by upcoming deadlines so nothing gets missed.
-- Receive gentle reminders for approaching due dates (future feature).
-- Store tasks locally on their device so progress is never lost.
+**Assignment & Deadline Manager** was created to solve these problems by providing a **simple, accessible, and organized platform** where students can input assignments, manage due dates, and receive reminders.
 
-By using this tool, students can clearly see what tasks are due soon and plan their study time better.
+---
+
+## Features
+- **Add and Manage Assignments**  
+  Add assignments with:
+  - Subject name  
+  - Task description  
+  - Due date  
+- **Automatic Deadline Sorting**  
+  Tasks are automatically arranged by due date so the most urgent ones are shown first.
+- **Deadline Reminders (Planned Feature)**  
+  Notifications will remind students about upcoming deadlines to avoid late work.
+- **Local Storage for Data**  
+  All assignments are saved locally on the student’s device, so tasks are kept even after refreshing or closing the app.
+- **User-Friendly Design**  
+  Clean, minimal, and easy to navigate, designed with students’ needs in mind.
+
+---
+
+## Why This Project Matters
+This tool is important because:
+- It helps **improve time management skills**.
+- It reduces **stress and procrastination** by giving a clear view of upcoming tasks.
+- It provides an **organized digital planner**, which is especially helpful when managing multiple subjects.
+
+By using this app, students can focus on completing their tasks rather than worrying about forgetting them.
