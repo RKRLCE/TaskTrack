@@ -2,65 +2,44 @@
 <br>
 
 ## Problem Statement  
-
-Many students face difficulties in organizing their academic tasks across multiple subjects. With overlapping deadlines and increasing workloads, it becomes easy to forget assignments or submit them late. This often results in:  
-
-- **Late submissions** caused by disorganized tracking.  
-- **Missed opportunities** to gain higher grades because tasks are forgotten.  
-- **Increased stress and procrastination**, as students struggle to remember due dates.  
-
-Traditional planners or manual notes are often misplaced, forgotten, or too time-consuming to update.  
-Therefore, there is a need for a **simple digital solution** that helps students organize their tasks effectively, reminds them of due dates, and improves their time management skills.  
+Many students struggle to keep track of multiple assignments and deadlines, which often leads to late submissions.  
+Without proper reminders, it is easy to forget tasks or manage time poorly.  
+There is a need for a tool that organizes subjects and due dates while reminding students of upcoming deadlines.  
 <br>
-
 
 ## Project Objectives  
+The main goal of the **Assignment & Deadline Manager** is to give students a **simple web app** to manage school work. Specifically, it aims to:  
 
-The main objective of the **Assignment & Deadline Manager** is to provide students with a **lightweight, easy-to-use web app** that helps them manage academic tasks more effectively. Specifically, the project aims to:  
-
-1. **Help students track their assignments and deadlines** in one organized platform.  
-2. **Automatically sort tasks by urgency**, ensuring that the most immediate deadlines are visible first.  
-3. **Provide deadline reminders** (planned feature) so students can prepare work in advance.  
-4. **Promote better time management skills**, reducing last-minute cramming and stress.  
-5. **Offer a simple and user-friendly interface** that students of all levels can use without difficulty.  
-6. (Planned Extension) **Allow teachers to add class tasks** for their students, so students don’t need to manually input everything.  
-
-By achieving these objectives, this tool will serve as a practical academic planner for both personal use and classroom use.  
+1. **Help students keep track of assignments and deadlines** in one place.  
+2. **Sort tasks by how urgent they are**, so the soonest deadlines show first.  
+3. **Send reminders for deadlines** (planned feature) so students can finish work on time.  
+4. **Help students manage their time better**, avoiding last-minute work and stress.  
+5. **Have an easy-to-use interface** that everyone can understand.  
 <br>
 
-
-
 ## Planned Features  
-
-The **Assignment & Deadline Manager** will include the following features:  
+The **Assignment & Deadline Manager** will have these features:  
 
 1. **Add and Manage Assignments**  
-   - Students can enter details such as:  
+   - Students can type:  
      - Subject name  
      - Task description  
      - Due date  
 
 2. **Automatic Deadline Sorting**  
-   - Assignments will be displayed in order of urgency, with the nearest due dates appearing first.  
+   - Tasks show up with the soonest deadlines first.  
 
 3. **Deadline Reminders (Planned Feature)**  
-   - Notifications will remind students about upcoming deadlines.  
-   - This helps prevent late work and forgotten tasks.  
+   - Notifications remind students of upcoming tasks.  
 
 4. **Local Storage for Data**  
-   - Assignments will be saved locally on the device.  
-   - Data will remain intact even after refreshing or closing the app.  
+   - Tasks are saved on the device.  
+   - Data stays even after closing or refreshing the app.  
 
 5. **User-Friendly Design**  
-   - Minimal and organized layout.  
-   - Easy to navigate for both tech-savvy and non-technical users.  
-
-6. **(Future Feature: Teacher Mode)**  
-   - Teachers may input class assignments.  
-   - Students can then view these tasks automatically, reducing manual input.  
+   - Clean, simple layout.  
+   - Easy to use for everyone.  
 <br>
-
-
 
 ## Planned Inputs and Outputs  
 
@@ -70,19 +49,15 @@ The **Assignment & Deadline Manager** will include the following features:
 - **Due Date**: September 30, 2025  
 <br>
 
-
 ### Example Outputs:  
 - **Organized Assignment List**:  
   - "CS-2 Project – Due: September 30, 2025"  
-- **Sorted by urgency** so this project will appear at the top if it is the soonest due.  
-- (Planned) **Reminders** such as:  
+- **Sorted by urgency** so the nearest deadlines show first.  
+- (Planned) **Reminders** like:  
   - "Reminder: CS-2 Project is due in 3 days."  
 <br>
 
-
-
 ## Logic Plan (Pseudocode)  
-
 ```pseudocode
 START PROGRAM
 
