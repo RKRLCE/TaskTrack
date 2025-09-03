@@ -41,4 +41,9 @@ Many students struggle with keeping track of multiple assignments and deadlines 
   - "CS-2 Project – Due: September 30, 2025"  
 - **Sorted by urgency** so the nearest deadlines show first.  
 - (Planned) **Reminders** like:  
-  - "Reminder: CS-2 Project is due in 3 days."  
+  - "Reminder: CS-2 Project is due in 3 days."    
+<br>
+
+### Contributors:
+- **Rayen Leigh C. Elecho**
+- **Jerriel Aljamz L. Salih**
