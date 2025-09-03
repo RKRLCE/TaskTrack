@@ -28,10 +28,17 @@ Many students struggle with keeping track of multiple assignments and deadlines 
   Clean, minimal, and easy to navigate, designed with students’ needs in mind.
 <br>
 
-## Why This Project Matters
-This tool is important because:
-- It helps **improve time management skills**.
-- It reduces **stress and procrastination** by giving a clear view of upcoming tasks.
-- It provides an **organized digital planner**, which is especially helpful when managing multiple subjects.
+## Planned Inputs and Outputs  
 
-By using this app, students can focus on completing their tasks rather than worrying about forgetting them.
+### Example Inputs:  
+- **Subject Name**: Computer Science  
+- **Task Description**: CS-2 Project  
+- **Due Date**: September 30, 2025  
+<br>
+
+### Example Outputs:  
+- **Organized Assignment List**:  
+  - "CS-2 Project – Due: September 30, 2025"  
+- **Sorted by urgency** so the nearest deadlines show first.  
+- (Planned) **Reminders** like:  
+  - "Reminder: CS-2 Project is due in 3 days."  
