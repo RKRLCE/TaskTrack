@@ -12,20 +12,28 @@ Many students struggle with keeping track of multiple assignments and deadlines 
 **Assignment & Deadline Manager** was created to solve these problems by providing a **simple, accessible, and organized platform** where students can input assignments, manage due dates, and receive reminders.
 <br>
 
-## Features
-- **Add and Manage Assignments**  
-  Add assignments with:
-  - Subject name  
-  - Task description  
-  - Due date  
-- **Automatic Deadline Sorting**  
-  Tasks are automatically arranged by due date so the most urgent ones are shown first.
-- **Deadline Reminders (Planned Feature)**  
-  Notifications will remind students about upcoming deadlines to avoid late work.
-- **Local Storage for Data**  
-  All assignments are saved locally on the student’s device, so tasks are kept even after refreshing or closing the app.
-- **User-Friendly Design**  
-  Clean, minimal, and easy to navigate, designed with students’ needs in mind.
+## Planned Features  
+The **Assignment & Deadline Manager** will have these features:  
+
+1. **Add and Manage Assignments**  
+   - Students can type:  
+     - Subject name  
+     - Task description  
+     - Due date  
+
+2. **Automatic Deadline Sorting**  
+   - Tasks show up with the soonest deadlines first.  
+
+3. **Deadline Reminders (Planned Feature)**  
+   - Notifications remind students of upcoming tasks.  
+
+4. **Local Storage for Data**  
+   - Tasks are saved on the device.  
+   - Data stays even after closing or refreshing the app.  
+
+5. **User-Friendly Design**  
+   - Clean, simple layout.  
+   - Easy to use for everyone.  
 <br>
 
 ## How to Run the Program
