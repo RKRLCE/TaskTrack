@@ -28,6 +28,14 @@ Many students struggle with keeping track of multiple assignments and deadlines 
   Clean, minimal, and easy to navigate, designed with students’ needs in mind.
 <br>
 
+## How to Run the Program
+1. Make sure you have Python installed.
+2. Download the file `Assignment-Deadline-Manager.py`.
+3. Open a terminal or command prompt.
+4. Run the program by pressing F5 or clicking Run.
+5. Follow the on-screen instructions to enter students assignments.
+<br>
+   
 ## Planned Inputs and Outputs  
 
 ### Example Inputs:  
