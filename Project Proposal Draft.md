@@ -4,7 +4,6 @@
 
 ## Project Title
 Assignment & Deadline Manager – A simple student tool designed to track assignments, organize due dates, and send reminders for upcoming deadlines.  
-This title may be refined as the project develops.
 
 <br>
 
