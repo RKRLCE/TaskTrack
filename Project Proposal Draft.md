@@ -1,9 +1,9 @@
-# Assignment & Deadline Manager
+# TaskTrack
 
 <br>
 
 ## Project Title
-Assignment & Deadline Manager – A simple student tool designed to track assignments, organize due dates, and send reminders for upcoming deadlines.  
+**TaskTrack** – A simple student tool designed to track assignments, organize due dates, and send reminders for upcoming deadlines.  
 
 <br>
 
@@ -83,7 +83,7 @@ FUNCTION Reminder_Check
     FOR each Assignment in Assignments list
         CALCULATE Days_Left = Due Date - Today
         IF Days_Left <= 2 THEN
-            DISPLAY "⚠ Reminder: Assignment due soon → " + Subject + " - " + Task
+            DISPLAY "Reminder: Assignment due soon → " + Subject + " - " + Task
         END IF
     END FOR
 END FUNCTION
