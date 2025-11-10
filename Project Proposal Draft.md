@@ -3,7 +3,7 @@
 <br>
 
 ## Project Title
-**TaskTrack: An Assignment Tracker App** – A simple student tool designed to track assignments, organize due dates, and send reminders for upcoming deadlines.  
+**TaskTrack: An Assignment Tracker App** <br> – A simple student tool designed to track assignments, organize due dates, and send reminders for upcoming deadlines.  
 
 <br>
 
