@@ -15,10 +15,11 @@ There is a need for a tool that organizes subjects and due dates while reminding
 <br>
 
 ## Project Objectives
-- Help students improve time management by keeping track of all their assignments in one place.  
-- Provide an organized system where tasks are automatically sorted by urgency.  
-- Remind students of deadlines to avoid late submissions.  
-- Reduce stress and procrastination by giving a clear view of what tasks are due soon.  
+- To allow users to enter and store assignment details such as subject, task, and due date.
+- To automatically arrange assignments based on their due dates.
+- To compute and display the number of days left before each assignment is due.
+- To show reminders for assignments that are due within a set number of days.
+- To save assignment data locally so it is not lost after closing the program.
 
 <br>
 
