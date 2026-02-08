@@ -1,125 +1,184 @@
 # TaskTrack: An Assignment Tracker App
 
-<br>
-
 ## Project Title
-**TaskTrack: An Assignment Tracker App** <br> – A simple student tool designed to track assignments, organize due dates, and send reminders for upcoming deadlines.  
+**TaskTrack: An Assignment Tracker App**  
+A simple but powerful student tool designed to help learners manage assignments, track deadlines, and reduce academic stress through better organization.
 
-<br>
+---
+
+## Introduction / Background of the Project
+Students handle multiple subjects with different tasks and deadlines. Relying on memory or scattered notes often leads to forgotten assignments, late submissions, and unnecessary stress.
+
+TaskTrack provides a centralized system where students can record assignments, track deadlines, and receive reminders for upcoming tasks. The app promotes better time management and organized study habits.
+
+---
 
 ## Problem Statement
-Many students struggle to keep track of multiple assignments and deadlines, which often leads to late submissions, missed opportunities to improve grades, and increased stress caused by poor organization.  
-Without proper reminders or a clear system, it is easy to forget tasks or manage time poorly.  
-There is a need for a tool that organizes subjects and due dates while reminding students of upcoming deadlines.  
+Many students struggle to manage multiple academic tasks at the same time. Without an organized system, deadlines are easily missed, causing late submissions and increased stress.
 
-<br>
+There is a need for a simple and user-friendly application that helps students organize assignments, monitor due dates, and receive timely reminders.
+
+---
 
 ## Project Objectives
-- To allow users to enter and store assignment details such as subject, task, and due date.
-- To automatically arrange assignments based on their due dates.
-- To compute and display the number of days left before each assignment is due.
-- To show reminders for assignments that are due within a set number of days.
-- To save assignment data locally so it is not lost after closing the program.
+- Allow users to input and store assignment details such as subject, task, due date, priority, and status.
+- Automatically sort assignments based on due dates.
+- Calculate and display the number of days left before deadlines.
+- Provide reminders for upcoming and overdue assignments.
+- Allow users to update, delete, and mark assignments as completed.
+- Save assignment data locally for persistent storage.
 
-<br>
+---
+
+## Scope and Limitations
+
+### Scope
+- Designed for individual student use.
+- Runs locally without internet access.
+- Focused on assignment tracking and reminders.
+- Uses a simple menu-based interface.
+
+### Limitations
+- No cloud synchronization.
+- Single-user only.
+- Notifications are shown only within the program.
+- No calendar integration.
+
+---
 
 ## Planned Features
-- **Add and Manage Assignments**  
-  Students can input subject name, task description, and due date.  
-- **Automatic Deadline Sorting**  
-  Tasks are automatically arranged by due date so the most urgent ones are shown first.  
-- **Deadline Reminders**  
-  Notifications will alert students if a due date is close (e.g., within 2 days).  
-- **Local Storage for Data**  
-  Assignments are saved locally so they remain available even after restarting the program.  
-- **User-Friendly Design**  
-  Clean, minimal, and easy-to-navigate interface made for student needs.  
 
-<br>
+### 1. Add and Manage Assignments
+Users can input:
+- Subject name  
+- Task description  
+- Due date  
+- Priority level (Low, Medium, High)  
+
+### 2. Automatic Deadline Sorting
+Assignments are automatically arranged by due date, with the most urgent tasks shown first.
+
+### 3. Edit and Update Assignments
+Users can modify:
+- Subject name  
+- Task description  
+- Due date  
+- Priority level  
+
+### 4. Delete Assignments
+Completed or unnecessary assignments can be deleted with a confirmation prompt.
+
+### 5. Assignment Status Tracking
+Assignments can be marked as:
+- **Pending**
+- **Completed**
+
+Completed tasks may be hidden or viewed separately.
+
+### 6. Deadline and Overdue Reminders
+- Alerts for assignments due within a user-defined number of days.
+- Overdue assignments display how many days late they are.
+
+### 7. Subject Filtering and Search
+- Filter assignments by subject.
+- Search assignments using keywords.
+
+### 8. Local Data Storage
+Assignments are automatically saved to a local file and loaded when the program starts.
+
+### 9. User-Friendly Interface
+A clean and minimal interface designed for ease of use by students.
+
+---
 
 ## Planned Inputs and Outputs
 
-**Inputs (provided by the user):**  
-- Subject: *e.g., “Computer Science”*  
-- Task: *e.g., “CS-2 Project Proposal”*  
-- Due Date: *e.g., “2025-09-30”*  
+### Inputs (Provided by the User)
+- **Subject:** Computer Science  
+- **Task:** Project Proposal  
+- **Due Date:** 2025-09-30  
+- **Priority:** High  
 
-**Outputs (generated by the system):**  
-- A list of assignments sorted by due date  
-- Days left until each deadline  
-- Reminders for assignments due within 2 days  
+### Outputs (Generated by the System)
+- List of assignments sorted by due date
+- Days remaining or overdue status
+- Reminder notifications
+- Assignment status indicators
 
-<br>
+---
 
 ## Logic Plan (Pseudocode)
 
 ```pseudocode
 START PROGRAM
 
-CREATE an empty list called Assignments
+CREATE empty list Assignments
+CALL Load_Data
 
 FUNCTION Add_Assignment
-    PROMPT user for Subject Name
-    PROMPT user for Task Description
-    PROMPT user for Due Date (format: YYYY-MM-DD)
-    CONVERT Due Date into a date object
-    STORE {Subject, Task, Due Date} in Assignments list
+    PROMPT user for Subject
+    PROMPT user for Task
+    PROMPT user for Due Date
+    PROMPT user for Priority
+    SET Status = Pending
+    STORE assignment in Assignments
     CALL Sort_Assignments
+    CALL Save_Data
+END FUNCTION
+
+FUNCTION Update_Assignment
+    DISPLAY Assignments with index numbers
+    PROMPT user to select assignment
+    PROMPT field to update
+    UPDATE selected field
+    CALL Sort_Assignments
+    CALL Save_Data
+END FUNCTION
+
+FUNCTION Delete_Assignment
+    DISPLAY Assignments
+    PROMPT user to select assignment
+    CONFIRM deletion
+    REMOVE assignment
+    CALL Save_Data
+END FUNCTION
+
+FUNCTION Mark_Completed
+    PROMPT user to select assignment
+    SET Status = Completed
+    CALL Save_Data
 END FUNCTION
 
 FUNCTION Sort_Assignments
-    SORT Assignments list by Due Date in ascending order
+    SORT Assignments by Due Date
 END FUNCTION
 
 FUNCTION Show_Assignments
-    GET today’s date
-    FOR each Assignment in Assignments list
-        CALCULATE Days_Left = Due Date - Today
-        DISPLAY Subject, Task, Due Date, and Days_Left
+    GET today's date
+    FOR each assignment
+        CALCULATE Days_Left
+        DISPLAY details
     END FOR
 END FUNCTION
 
 FUNCTION Reminder_Check
-    GET today’s date
-    FOR each Assignment in Assignments list
-        CALCULATE Days_Left = Due Date - Today
-        IF Days_Left <= 2 THEN
-            DISPLAY "Reminder: Assignment due soon → " + Subject + " - " + Task
-        END IF
+    FOR each assignment
+        IF Days_Left <= Reminder_Days AND Status = Pending
+            DISPLAY reminder
+        IF Days_Left < 0
+            DISPLAY overdue alert
     END FOR
 END FUNCTION
 
 FUNCTION Save_Data
-    WRITE Assignments list to a local file
+    WRITE Assignments to local file
 END FUNCTION
 
 FUNCTION Load_Data
-    IF saved file exists THEN
-        READ Assignments list from the file
-    ELSE
-        KEEP Assignments list empty
+    IF file exists
+        READ Assignments from file
 END FUNCTION
 
-REPEAT
-    DISPLAY Menu Options:
-        1 – Add New Assignment
-        2 – Show All Assignments
-        3 – Check Reminders
-        4 – Exit Program
-    PROMPT user for choice
-
-    IF choice = 1 THEN
-        CALL Add_Assignment
-        CALL Save_Data
-    ELSE IF choice = 2 THEN
-        CALL Show_Assignments
-    ELSE IF choice = 3 THEN
-        CALL Reminder_Check
-    ELSE IF choice = 4 THEN
-        CALL Save_Data
-        EXIT PROGRAM
-    ELSE
-        DISPLAY "Invalid choice. Try again."
-UNTIL user chooses Exit
+DISPLAY menu loop until Exit
 
 END PROGRAM
