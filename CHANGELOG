@@ -17,3 +17,16 @@ Adjusted the presentation to match the updated objectives.
 v1.0.6
 Updated flowchart for easier understanding
 Added a beta python code for the app
+
+v1.0.7  
+Added new assignment management features, including:
+- Editing and updating existing assignments
+- Deleting assignments with confirmation
+- Marking assignments as completed
+- Assignment status tracking (Pending and Completed)
+- Priority levels for tasks (Low, Medium, High)
+- Overdue task detection and alerts
+- Subject-based filtering and search functionality
+- Customizable deadline reminders
+Updated the project proposal to reflect the newly added features and system capabilities.  
+Updated the README file for better clarity, structure, and documentation of current features.
