@@ -1,6 +1,4 @@
-# Compile Using:
-## https://codehs.com/sandbox/id/python-graphics-tkinter-IPnUun
-
+## Run using VS Code and open the window loaded
 ````
 from tkinter import *
 from tkinter import messagebox, ttk
