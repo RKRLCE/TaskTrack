@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TaskTrack</title>
+
+    <style>
+        :root {
+            --bg: {{ theme.bg }};
+            --card: {{ theme.card }};
+            --text: {{ theme.text }};
+            --accent: {{ theme.accent }};
+            --shadow: {{ theme.shadow }};
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            /* FIXED: clean theme-based background */
+            background: radial-gradient(circle at top, var(--card), var(--bg) 60%);
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        /* NAV */
+        .nav {
+            display: flex;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+
+            /* FIXED SHADOW */
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        .nav button {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 15px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .nav button:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .section { display: none; }
+        .active { display: block; }
+
+        h1 { font-size: 32px; margin-bottom: 10px; }
+        h2 { margin-top: 25px; font-size: 18px; opacity: 0.9; }
+
+        /* SUMMARY */
+        .summary {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .card {
+            flex: 1;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.2s;
+
+            /* FIXED SHADOW */
+            box-shadow: 0 6px 15px var(--shadow);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* FORM */
+        form {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+
+            /* FIXED SHADOW */
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        input, select {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3);
+            color: var(--text);
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            filter: brightness(1.1);
+        }
+
+        /* TASKS */
+        .task {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 12px;
+            transition: 0.2s;
+
+            /* FIXED SHADOW */
+            box-shadow: 0 6px 15px var(--shadow);
+        }
+
+        .task:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.06);
+
+            /* FIXED SHADOW */
+            box-shadow: 0 12px 30px var(--shadow);
+        }
+
+        a {
+            margin-right: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 8px;
+            border-radius: 6px;
+        }
+
+        a:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .warning {
+            background: rgba(255,80,80,0.08);
+            border-left: 4px solid #ff4d4d;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .ok {
+            background: rgba(0,150,255,0.08);
+            border-left: 4px solid var(--accent);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .overdue {
+            background: rgba(255,0,0,0.05);
+            border-left: 4px solid red;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--card);
+            width: 400px;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 14px;
+
+            /* FIXED SHADOW */
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .close {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+{% if error %}
+<script>alert("{{ error }}");</script>
+{% endif %}
+
+<div class="nav">
+    <button onclick="showTab('home')">Home</button>
+    <button onclick="showTab('tasks')">Tasks</button>
+    <button onclick="showTab('credits')">Credits</button>
+    <button onclick="showTab('settings')">Settings</button>
+</div>
+
+<div class="container">
+
+<!-- HOME -->
+<div id="home" class="section active">
+
+    <h1>TaskTrack</h1>
+    <div style="text-align:center; margin: 20px 0;">
+    <img src="{{ url_for('static', filename='calendar.png') }}"
+     style="max-width: 420px; width: 100%; border-radius: 12px; opacity: 0.95;">
+    </div>
+
+    <div class="summary">
+        <div class="card">Total<br><b>{{ tasks|length }}</b></div>
+        <div class="card">Upcoming<br><b>{{ upcoming|length }}</b></div>
+        <div class="card">Overdue<br><b>{{ overdue|length }}</b></div>
+    </div>
+
+    <h2>Upcoming</h2>
+    {% if upcoming|length == 0 %}
+        <div class="ok">No tasks right now.</div>
+    {% else %}
+        {% for t in upcoming %}
+            <div class="warning">
+                <b>{{ t.subject }}</b> — {{ t.task }}<br>
+                Due: {{ t.due }} | {{ t.days_left }} day(s)
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <h2>Overdue</h2>
+    {% if overdue|length == 0 %}
+        <div class="ok">No overdue tasks.</div>
+    {% else %}
+        {% for t in overdue %}
+            <div class="overdue">
+                <b>{{ t.subject }}</b> — {{ t.task }}<br>
+                {{ t.days_left * -1 }} day(s) overdue
+            </div>
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+<!-- TASKS -->
+<div id="tasks" class="section">
+
+<h2>Assignments</h2>
+
+<form method="POST">
+    <input name="subject" placeholder="Subject" required>
+    <input name="task" placeholder="Task" required>
+    <input type="date" name="due" required>
+    <select name="priority" required>
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+    </select>
+    <button>Add Task</button>
+</form>
+
+{% for t in tasks %}
+
+<div class="task"
+     style="
+        border-left: 5px solid 
+        {% if t.status == 'Completed' %}#00c853
+        {% elif t.days_left < 0 %}red
+        {% elif t.days_left == 0 %}orange
+        {% else %}var(--accent)
+        {% endif %};
+        opacity: {% if t.status == 'Completed' %}0.6{% else %}1{% endif %};
+     ">
+
+    <h3>{{ t.subject }}</h3>
+    <p>{{ t.task }}</p>
+
+    <p>Due: {{ t.due }}</p>
+    <p>Status: {{ t.status }}</p>
+
+    {% if t.status != "Completed" %}
+        <a href="/done/{{ t.id }}">✔ Done</a>
+
+        <a class="editBtn"
+           data-id="{{ t.id }}"
+           data-subject="{{ t.subject }}"
+           data-task="{{ t.task }}"
+           data-due="{{ t.due }}"
+           data-priority="{{ t.priority }}">
+           ✏ Edit
+        </a>
+    {% else %}
+        <span style="color:#00c853;">✔ Completed</span>
+    {% endif %}
+
+    <a href="/delete/{{ t.id }}">❌ Delete</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- SETTINGS -->
+<div id="settings" class="section">
+<h2>Settings</h2>
+<form method="POST" action="/set-theme">
+    <select name="theme">
+        <option value="default">Default</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="light">Light</option>
+    </select>
+    <button>Save</button>
+</form>
+</div>
+
+<!-- CREDITS -->
+<div id="credits" class="section">
+    <h2>Credits</h2>
+    <p>Your Team</p>
+</div>
+
+<!-- MODAL -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+
+        <h3>Edit Task</h3>
+
+        <form id="editForm" method="POST">
+            <input id="editSubject" name="subject" required>
+            <input id="editTask" name="task" required>
+            <input type="date" id="editDue" name="due" required>
+            <select id="editPriority" name="priority" required>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select>
+            <button>Save</button>
+        </form>
+    </div>
+</div>
+
+</div>
+
+<script>
+function showTab(id){
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+showTab("{{ tab }}" || "home");
+
+const modal = document.getElementById("editModal");
+
+document.querySelectorAll(".editBtn").forEach(btn=>{
+    btn.onclick = ()=>{
+        editSubject.value = btn.dataset.subject;
+        editTask.value = btn.dataset.task;
+        editDue.value = btn.dataset.due;
+        editPriority.value = btn.dataset.priority;
+        editForm.action = "/edit/" + btn.dataset.id;
+        modal.style.display = "block";
+    }
+});
+
+function closeModal(){
+    modal.style.display = "none";
+}
+
+window.onclick = e=>{
+    if(e.target == modal) modal.style.display="none";
+}
+</script>
+
+</body>
+</html>
