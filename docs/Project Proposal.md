@@ -2,31 +2,31 @@
 
 ## Project Title
 **TaskTrack: An Assignment Tracker App**  
-A simple but powerful student tool designed to help learners manage assignments, track deadlines, and reduce academic stress through better organization.
+A simple student app made to help learners organize assignments, track deadlines, and reduce stress by keeping school tasks in one place.
 
 ---
 
 ## Introduction / Background of the Project
-Students handle multiple subjects with different tasks and deadlines. Relying on memory or scattered notes often leads to forgotten assignments, late submissions, and unnecessary stress.
+Students often have many tasks from different subjects at the same time. When they depend only on memory or random notes, they can forget work, miss deadlines, and feel stressed.
 
-TaskTrack provides a centralized system where students can record assignments, track deadlines, and receive reminders for upcoming tasks. The app promotes better time management and organized study habits.
+TaskTrack was made to give students one place where they can add assignments, check due dates and times, save notes, follow progress, and see which work is urgent. The app helps users become more organized and manage school work better.
 
 ---
 
 ## Problem Statement
-Many students struggle to manage multiple academic tasks at the same time. Without an organized system, deadlines are easily missed, causing late submissions and increased stress.
+Many students find it hard to manage school tasks when there are many assignments from different subjects. Without a clear system, they may forget tasks, pass work late, or become confused about what should be done first.
 
-There is a need for a simple and user-friendly application that helps students organize assignments, monitor due dates, and receive timely reminders.
+There is a need for a simple and easy-to-use app that can help students organize assignments, track deadlines, and manage their progress.
 
 ---
 
 ## Project Objectives
-- Allow users to input and store assignment details such as subject, task, due date, priority, and status.
-- Automatically sort assignments based on due dates.
-- Calculate and display the number of days left before deadlines.
-- Provide reminders for upcoming and overdue assignments.
-- Allow users to update, delete, and mark assignments as completed.
-- Save assignment data locally for persistent storage.
+- Allow users to add and save assignment details such as subject, task, due date, due time, priority, progress, and status.
+- Help users see which tasks are upcoming, urgent, overdue, finished, or archived.
+- Allow users to edit, delete, finish, archive, and restore tasks.
+- Allow users to save notes and checklist items for each task.
+- Let users sort tasks automatically or arrange them with drag-and-drop.
+- Save task data and settings locally for continued use.
 
 ---
 
@@ -34,76 +34,96 @@ There is a need for a simple and user-friendly application that helps students o
 
 ### Scope
 - Designed for individual student use.
-- Runs locally without internet access.
-- Focused on assignment tracking and reminders.
-- Uses a simple menu-based interface.
+- Runs locally on the user’s device.
+- Focused on assignment tracking and task organization.
+- Includes task notes, checklist, progress tracking, search, and settings.
 
 ### Limitations
-- No cloud synchronization.
+- No cloud sync between devices.
 - Single-user only.
-- Notifications are shown only within the program.
-- No calendar integration.
+- No email or phone notifications outside the app.
+- No direct calendar integration.
 
 ---
 
-## Planned Features
+## Current Features
 
 ### 1. Add and Manage Assignments
 Users can input:
-- Subject name  
-- Task description  
-- Due date  
-- Priority level (Low, Medium, High)  
+- Subject name
+- Task description
+- Due date
+- Due time
+- Priority level
+- Progress percentage
 
-### 2. Automatic Deadline Sorting
-Assignments are automatically arranged by due date, with the most urgent tasks shown first.
+### 2. Edit and Update Assignments
+Users can change:
+- Subject name
+- Task description
+- Due date
+- Due time
+- Priority
+- Progress
 
-### 3. Edit and Update Assignments
-Users can modify:
-- Subject name  
-- Task description  
-- Due date  
-- Priority level  
+### 3. Notes and Checklist
+Each task can store:
+- Extra notes
+- A checklist of smaller steps
 
-### 4. Delete Assignments
-Completed or unnecessary assignments can be deleted with a confirmation prompt.
-
-### 5. Assignment Status Tracking
+### 4. Status Tracking
 Assignments can be marked as:
 - **Pending**
 - **Completed**
+- **Archived**
 
-Completed tasks may be hidden or viewed separately.
+### 5. Active, Finished, and Archived Views
+Tasks are shown in separate sections so users can easily check unfinished, finished, and archived work.
 
-### 6. Deadline and Overdue Reminders
-- Alerts for assignments due within a user-defined number of days.
-- Overdue assignments display how many days late they are.
+### 6. Automatic Sorting and Manual Reordering
+Tasks are automatically arranged by due date, due time, and priority. Users can also drag tasks to make their own custom order.
 
-### 7. Subject Filtering and Search
-- Filter assignments by subject.
-- Search assignments using keywords.
+### 7. Upcoming and Overdue Monitoring
+The app highlights:
+- Upcoming tasks
+- Overdue tasks
+- Urgent tasks
 
-### 8. Local Data Storage
-Assignments are automatically saved to a local file and loaded when the program starts.
+### 8. Undo for Important Actions
+The app gives short undo chances after actions such as:
+- Adding a task
+- Deleting a task
+- Clearing finished tasks
+- Resetting custom order
 
-### 9. User-Friendly Interface
-A clean and minimal interface designed for ease of use by students.
+### 9. Theme and Settings Options
+Users can adjust:
+- App theme
+- Urgency hours
+- Delete undo time
+- Delete confirmation settings
+
+### 10. Local Data Storage
+Assignments and settings are saved in local JSON files and loaded again when the app opens.
 
 ---
 
-## Planned Inputs and Outputs
+## Current Inputs and Outputs
 
 ### Inputs (Provided by the User)
-- **Subject:** Computer Science  
-- **Task:** Project Proposal  
-- **Due Date:** 2025-09-30  
+- **Subject:** Biology  
+- **Task:** Terrarium project  
+- **Due Date:** 2026-04-22  
+- **Due Time:** 10:30 AM  
 - **Priority:** High  
+- **Progress:** 80%  
 
 ### Outputs (Generated by the System)
-- List of assignments sorted by due date
-- Days remaining or overdue status
-- Reminder notifications
-- Assignment status indicators
+- A list of assignments in active, finished, or archived views
+- Due status such as upcoming, urgent, or overdue
+- Progress display using percentage and progress ring
+- Notes and checklist display for each task
+- Undo option for important actions
 
 ---
 
@@ -112,73 +132,72 @@ A clean and minimal interface designed for ease of use by students.
 ```pseudocode
 START PROGRAM
 
-CREATE empty list Assignments
-CALL Load_Data
+LOAD saved task data
+LOAD saved settings
 
-FUNCTION Add_Assignment
-    PROMPT user for Subject
-    PROMPT user for Task
-    PROMPT user for Due Date
-    PROMPT user for Priority
-    SET Status = Pending
-    STORE assignment in Assignments
-    CALL Sort_Assignments
-    CALL Save_Data
+FUNCTION Add_Task
+    GET subject
+    GET task description
+    GET due date
+    GET due time
+    GET priority
+    GET progress
+    SET status to Pending
+    SAVE task
 END FUNCTION
 
-FUNCTION Update_Assignment
-    DISPLAY Assignments with index numbers
-    PROMPT user to select assignment
-    PROMPT field to update
-    UPDATE selected field
-    CALL Sort_Assignments
-    CALL Save_Data
+FUNCTION Edit_Task
+    SELECT task
+    UPDATE task details
+    SAVE changes
 END FUNCTION
 
-FUNCTION Delete_Assignment
-    DISPLAY Assignments
-    PROMPT user to select assignment
-    CONFIRM deletion
-    REMOVE assignment
-    CALL Save_Data
+FUNCTION Add_Notes_And_Checklist
+    SELECT task
+    GET notes
+    GET checklist items
+    SAVE changes
 END FUNCTION
 
-FUNCTION Mark_Completed
-    PROMPT user to select assignment
-    SET Status = Completed
-    CALL Save_Data
+FUNCTION Mark_Finished
+    SELECT task
+    SET status to Completed
+    SAVE changes
 END FUNCTION
 
-FUNCTION Sort_Assignments
-    SORT Assignments by Due Date
+FUNCTION Archive_Task
+    SELECT task
+    SET status to Archived
+    SAVE changes
 END FUNCTION
 
-FUNCTION Show_Assignments
-    GET today's date
-    FOR each assignment
-        CALCULATE Days_Left
-        DISPLAY details
-    END FOR
+FUNCTION Restore_Task
+    SELECT finished or archived task
+    SET status to Pending
+    SAVE changes
 END FUNCTION
 
-FUNCTION Reminder_Check
-    FOR each assignment
-        IF Days_Left <= Reminder_Days AND Status = Pending
-            DISPLAY reminder
-        IF Days_Left < 0
-            DISPLAY overdue alert
-    END FOR
+FUNCTION Reorder_Tasks
+    IF user drags task
+        SAVE custom order
+    END IF
+END FUNCTION
+
+FUNCTION Show_Home_Page
+    DISPLAY total tasks
+    DISPLAY upcoming tasks
+    DISPLAY overdue tasks
 END FUNCTION
 
 FUNCTION Save_Data
-    WRITE Assignments to local file
+    WRITE tasks and settings to local files
 END FUNCTION
 
 FUNCTION Load_Data
-    IF file exists
-        READ Assignments from file
+    READ saved tasks and settings if files exist
 END FUNCTION
 
-DISPLAY menu loop until Exit
+DISPLAY app until user closes it
 
 END PROGRAM
+```
