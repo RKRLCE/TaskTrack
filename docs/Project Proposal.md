@@ -201,3 +201,26 @@ DISPLAY app until user closes it
 
 END PROGRAM
 ```
+
+
+## References
+
+Barbayannis, G., Bandari, M., Zheng, X., Baquerizo, H., Pecor, K. W., & Ming, X. (2022).  
+Academic stress and mental well-being in college students: Correlations, affected groups, and COVID-19. *Frontiers in Psychology, 13*, 886344.  
+https://doi.org/10.3389/fpsyg.2022.886344  
+
+Ahmady, S., Khajeali, N., Sharifi, F., & Mirmoghtadaei, Z. (2021).  
+Relationship between study skills, stress, and academic performance among students: A systematic review. *Journal of Education and Health Promotion, 10*, 123.  
+https://pmc.ncbi.nlm.nih.gov/articles/PMC7933620/  
+
+Fu, Y., et al. (2025).  
+Unlocking academic success: The impact of time management on college students’ study engagement.  
+https://pmc.ncbi.nlm.nih.gov/articles/PMC11967054/  
+
+Lovin, D., et al. (2022).  
+Stress among students and difficulty with time management. *Social Sciences, 11*(12), 538.  
+https://www.mdpi.com/2076-0760/11/12/538  
+
+Luceño-Moreno, L., et al. (2025).  
+Impact of a strategic time management programme on academic stress.  
+https://www.ansiedadyestres.es/art/2025/anyes2025a1  
