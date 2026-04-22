@@ -550,15 +550,51 @@ def undo(task_id):
 def restore_finished():
     tasks = load_data()
     changed = False
+    restored_snapshots = []
     for task in tasks:
         if task.get("status") == "Completed":
+            restored_snapshots.append(task.copy())
             task["status"] = "Pending"
             task["completed_at"] = ""
             task["archived_at"] = ""
             changed = True
     if changed:
         save_data(tasks)
+        push_recent_action({
+            "id": str(uuid.uuid4()),
+            "type": "restore_task_states",
+            "tasks": restored_snapshots,
+            "expires_at": datetime.now().timestamp() + load_settings().get("delete_undo_duration", 3),
+            "label": f"{len(restored_snapshots)} finished task(s) restored.",
+            "tab": "tasks",
+            "task_panel": "finished",
+        })
     return redirect(url_for("index", tab="tasks", task_panel="finished"))
+
+@app.route("/restore-archived")
+def restore_archived_all():
+    tasks = load_data()
+    changed = False
+    restored_snapshots = []
+    for task in tasks:
+        if task.get("status") == "Archived":
+            restored_snapshots.append(task.copy())
+            task["status"] = "Pending"
+            task["completed_at"] = ""
+            task["archived_at"] = ""
+            changed = True
+    if changed:
+        save_data(tasks)
+        push_recent_action({
+            "id": str(uuid.uuid4()),
+            "type": "restore_task_states",
+            "tasks": restored_snapshots,
+            "expires_at": datetime.now().timestamp() + load_settings().get("delete_undo_duration", 3),
+            "label": f"{len(restored_snapshots)} archived task(s) restored.",
+            "tab": "tasks",
+            "task_panel": "archived",
+        })
+    return redirect(url_for("index", tab="tasks", task_panel="archived"))
 
 @app.route("/archive/<task_id>")
 def archive(task_id):
@@ -636,6 +672,19 @@ def undo_action(action_id):
                 changed = True
         if changed:
             save_data(tasks)
+    elif action_type == "restore_task_states":
+        state_map = {task.get("id"): task for task in action.get("tasks", []) if task.get("id")}
+        changed = False
+        existing_map = {task.get("id"): task for task in tasks if task.get("id")}
+        for task_id, snapshot in state_map.items():
+            if task_id in existing_map:
+                existing_map[task_id].clear()
+                existing_map[task_id].update(snapshot)
+            else:
+                tasks.append(snapshot)
+            changed = True
+        if changed:
+            save_data(tasks)
     elif action_type == "restore_order":
         order_map = action.get("orders", {})
         changed = False
@@ -669,6 +718,24 @@ def delete_completed():
             "task_panel": "finished",
         })
     return redirect(url_for("index", tab="tasks", task_panel="finished"))
+
+@app.route("/delete-archived")
+def delete_archived():
+    tasks = load_data()
+    deleted_tasks = [t for t in tasks if t["status"] == "Archived"]
+    tasks = [t for t in tasks if t["status"] != "Archived"]
+    save_data(tasks)
+    if deleted_tasks:
+        push_recent_action({
+            "id": str(uuid.uuid4()),
+            "type": "restore_tasks",
+            "tasks": deleted_tasks,
+            "expires_at": datetime.now().timestamp() + load_settings().get("delete_undo_duration", 3),
+            "label": f"{len(deleted_tasks)} archived task(s) cleared.",
+            "tab": "tasks",
+            "task_panel": "archived",
+        })
+    return redirect(url_for("index", tab="tasks", task_panel="archived"))
 
 # ---------------- EDIT ----------------
 
