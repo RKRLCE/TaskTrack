@@ -1095,13 +1095,13 @@
 
 <form method="GET" class="search-form">
     <input type="hidden" name="tab" value="tasks">
-    <input type="hidden" name="task_panel" value="{{ task_panel }}">
+    <input type="hidden" name="task_panel" value="active">
     <div class="field-group">
         <label class="priority-label">Search Tasks</label>
         <input type="search" name="q" value="{{ search_query }}" placeholder="Search subject, task, or priority">
     </div>
     <button type="submit">Apply</button>
-    <a class="action-link action-edit" href="/?tab=tasks&task_panel={{ task_panel }}">Clear</a>
+    <a class="action-link action-edit" href="/?tab=tasks&task_panel=active">Clear</a>
 </form>
 
 <div class="tasks-shell">
@@ -1241,7 +1241,7 @@
     <h2>Finished Tasks</h2>
     {% if completed|length > 0 %}
     <div class="toolbar-actions">
-        <a class="action-link action-undo" href="/restore-finished">Mark All as Active</a>
+        <a class="action-link action-undo" href="/restore-finished">Restore All Finished</a>
         <a id="deleteAllFinishedBtn" class="action-link action-delete" href="/delete-completed">Delete All Finished</a>
     </div>
     {% endif %}
@@ -1327,6 +1327,12 @@
 <div id="archivedTasksPanel" class="tasks-panel">
 <div class="section-head">
     <h2>Archived Tasks</h2>
+    {% if archived|length > 0 %}
+    <div class="toolbar-actions">
+        <a class="action-link action-undo" href="/restore-archived">Restore All Archived</a>
+        <a class="action-link action-delete" href="/delete-archived">Delete All Archived</a>
+    </div>
+    {% endif %}
 </div>
 <p class="panel-description">Archived Tasks are older completed assignments you want to keep for reference without cluttering the recent finished list.</p>
 
@@ -1452,10 +1458,6 @@
                     <option value="10" {% if settings.delete_undo_duration == 10 %}selected{% endif %}>10 seconds</option>
                 </select>
             </div>
-            <label class="checkbox-row">
-                <input type="checkbox" name="confirm_delete_all_finished" {% if settings.confirm_delete_all_finished %}checked{% endif %}>
-                <span>Confirm before deleting all finished tasks</span>
-            </label>
         </div>
     </div>
 
